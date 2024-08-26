@@ -1,0 +1,23 @@
+{
+    "headerTitle": "S19 Daemortalis - Royal Garden",
+    "addButton": "Add",
+    "searchPlaceholder": "Search by Zalo name",
+    "createMember": "Create New Member",
+    "editMember": "Edit Member",
+    "save": "Save",
+    "cancel": "Cancel",
+    "ingameName": "Ingame Name",
+    "zaloName": "Zalo Name",
+    "role": "Role",
+    "action": "Action",
+    "delete": "Delete",
+    "edit": "Edit",
+    "roles": {
+        "Tông Chủ": "Sect Master",
+        "Phó Tông Chủ": "Deputy",
+        "Trưởng Lão": "Elder",
+        "Chủ Sự": "Officer",
+        "Thành Viên": "Member"
+      }
+  }
+  

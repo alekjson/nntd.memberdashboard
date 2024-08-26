@@ -1,0 +1,23 @@
+{
+    "headerTitle": "S19 TMG - Ngự Uyển Viên",
+    "addButton": "Thêm",
+    "searchPlaceholder": "Tìm kiếm theo tên Zalo",
+    "createMember": "Tạo thành viên mới",
+    "editMember": "Chỉnh sửa thành viên",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "ingameName": "Tên Ingame",
+    "zaloName": "Tên Zalo",
+    "role": "Chức Vụ",
+    "action": "Hành Động",
+    "delete": "Xóa",
+    "edit": "Sửa",
+    "roles": {
+        "Tông Chủ": "Tông Chủ",
+        "Phó Tông Chủ": "Phó Tông Chủ",
+        "Trưởng Lão": "Trưởng Lão",
+        "Chủ Sự": "Chủ Sự",
+        "Thành Viên": "Thành Viên"
+      }
+  }
+  
