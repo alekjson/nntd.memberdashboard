@@ -22,6 +22,9 @@
     "fillAllFields": "Vui lòng điền vào tất cả các ô trống",
   "memberUpdated": "Cập nhật thành viên thành công!",
   "memberAdded": "Thêm thành viên thành công!",
-  "errorSavingMember": "Đã xảy ra lỗi khi lưu thành viên. Vui lòng thử lại."
+  "errorSavingMember": "Đã xảy ra lỗi khi lưu thành viên. Vui lòng thử lại.",
+  "page_title": "S19 - Ngự Uyển Viên",
+  "welcome_message": "Chào mừng đến với bảng điều khiển",
+    "meta_description": "Đây là mô tả tiếng Việt cho bảng điều khiển."
   }
   

@@ -22,5 +22,8 @@
   "fillAllFields": "Please fill out all fields",
   "memberUpdated": "Member successfully updated!",
   "memberAdded": "Member successfully added!",
-  "errorSavingMember": "An error occurred while saving the member. Please try again."
+  "errorSavingMember": "An error occurred while saving the member. Please try again.",
+  "page_title": "S19 - Royal Garden",
+  "welcome_message": "Welcome to the Dashboard",
+  "meta_description": "This is the English description for the dashboard."
 }
