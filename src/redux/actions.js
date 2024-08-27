@@ -1,4 +1,4 @@
-import { SET_MEMBERS, ADD_MEMBER, UPDATE_MEMBER, DELETE_MEMBER } from './actionTypes';
+import { SET_MEMBERS, ADD_MEMBER, UPDATE_MEMBER, DELETE_MEMBER, FETCH_MEMBERS, SAVE_MEMBER } from './actionTypes';
 
 export const setMembers = (members) => ({
   type: SET_MEMBERS,
@@ -18,4 +18,13 @@ export const updateMember = (member) => ({
 export const deleteMember = (memberId) => ({
   type: DELETE_MEMBER,
   payload: memberId,
+});
+
+export const fetchMembers = () => ({
+  type: FETCH_MEMBERS,
+});
+
+export const saveMember = (member) => ({
+  type: SAVE_MEMBER,
+  payload: member,
 });

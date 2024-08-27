@@ -1,23 +1,26 @@
 {
-    "headerTitle": "S19 Daemortalis - Royal Garden",
-    "addButton": "Add",
-    "searchPlaceholder": "Search by Zalo name",
-    "createMember": "Create New Member",
-    "editMember": "Edit Member",
-    "save": "Save",
-    "cancel": "Cancel",
-    "ingameName": "Ingame Name",
-    "zaloName": "Zalo Name",
-    "role": "Role",
-    "action": "Action",
-    "delete": "Delete",
-    "edit": "Edit",
-    "roles": {
-        "Tông Chủ": "Sect Master",
-        "Phó Tông Chủ": "Deputy",
-        "Trưởng Lão": "Elder",
-        "Chủ Sự": "Officer",
-        "Thành Viên": "Member"
-      }
-  }
-  
+  "headerTitle": "S19 Daemortalis - Royal Garden",
+  "addButton": "Add",
+  "searchPlaceholder": "Search by Zalo name",
+  "createMember": "Create New Member",
+  "editMember": "Edit Member",
+  "save": "Save",
+  "cancel": "Cancel",
+  "ingameName": "Ingame Name",
+  "zaloName": "Zalo Name",
+  "role": "Role",
+  "action": "Action",
+  "delete": "Delete",
+  "edit": "Edit",
+  "roles": {
+    "Tông Chủ": "Sect Master",
+    "Phó Tông Chủ": "Deputy",
+    "Trưởng Lão": "Elder",
+    "Chủ Sự": "Officer",
+    "Thành Viên": "Member"
+  },
+  "fillAllFields": "Please fill out all fields",
+  "memberUpdated": "Member successfully updated!",
+  "memberAdded": "Member successfully added!",
+  "errorSavingMember": "An error occurred while saving the member. Please try again."
+}

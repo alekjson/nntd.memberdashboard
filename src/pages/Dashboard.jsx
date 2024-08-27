@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { collection, addDoc, updateDoc, deleteDoc, doc, getDocs } from 'firebase/firestore';
-import { db } from '../firebase.config';
+import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import backgroundImage from '../assets/background.jpg';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
-import { setMembers, addMember, updateMember, deleteMember } from '../redux/actions'; 
+import { fetchMembers, saveMember, deleteMember } from '../redux/actions'; 
+import Alert from '../components/Alert';
 
 const Dashboard = () => {
   const { t, i18n } = useTranslation();
@@ -16,40 +15,15 @@ const Dashboard = () => {
   const [currentId, setCurrentId] = useState(null);
   const members = useSelector(state => state.members.members); 
   const [filteredMembers, setFilteredMembers] = useState(members);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
 
   useEffect(() => {
     document.documentElement.style.setProperty('--background-image', `url(${backgroundImage})`);
   }, []);
 
-  const fetchMembers = useCallback(async () => {
-    try {
-      const membersSnapshot = await getDocs(collection(db, 'members'));
-      let membersList = membersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      console.log(membersList);
-      const roleOrder = {
-        'Tông Chủ': 1,
-        'Phó Tông Chủ': 2,
-        'Trưởng Lão': 3,
-        'Chủ Sự': 4,
-        'Thành Viên': 5 
-      };
-  
-      membersList = membersList.sort((a, b) => roleOrder[a.role] - roleOrder[b.role]);
-  
-      console.log('Fetched members:', membersList); 
-  
-      dispatch(setMembers(membersList)); 
-      setFilteredMembers(membersList); 
-    } catch (error) {
-      console.error('Error fetching members:', error);
-      alert('An error occurred while fetching members. Please try again.');
-    }
-  }, [dispatch]);
-
   useEffect(() => {
-    fetchMembers(); 
-  }, [fetchMembers]);
+    dispatch(fetchMembers()); 
+  }, [dispatch]);
 
   useEffect(() => {
     setFilteredMembers(
@@ -60,51 +34,18 @@ const Dashboard = () => {
   const handleCreate = () => {
     setIngameName('');
     setZaloName('');
-    setCurrentId(null); 
+    setCurrentId(null);
     setShowModal(true);
   };
 
-  const handleSave = async () => {
+  const handleSave = () => {
     if (ingameName.trim() === '' || zaloName.trim() === '') {
-      alert('Please fill out all fields');
+      setAlertMessage(t('fillAllFields'));
+      setShowAlert(true);
       return;
     }
 
-    let role = 'Thành Viên';
-    if (zaloName === 'Minh Ngọc') {
-      role = 'Tông Chủ';
-    } else if (zaloName === 'Hữu Vinh' || zaloName === 'Nguyễn Bá Thành') {
-      role = 'Phó Tông Chủ';
-    } else if (['Phúc Lâm', 'Ngọc Nhi', 'Trí Phạm'].includes(zaloName)) {
-      role = 'Trưởng Lão';
-    } else if (['Phạm Tuấn Anh', 'Minh'].includes(zaloName) || zaloName.includes('Bò')) {
-      role = 'Chủ Sự';
-    }
-
-    try {
-      if (currentId) {
-        const memberRef = doc(db, 'members', currentId);
-        await updateDoc(memberRef, {
-          ingameName,
-          zaloName,
-          role
-        });
-        dispatch(updateMember({ id: currentId, ingameName, zaloName, role }));
-        console.log('Document successfully updated!');
-      } else {
-        const newDoc = await addDoc(collection(db, 'members'), {
-          ingameName,
-          zaloName,
-          role
-        });
-        dispatch(addMember({ id: newDoc.id, ingameName, zaloName, role })); 
-        console.log('Document successfully written!');
-      }
-    } catch (error) {
-      console.error('Error saving member:', error);
-      alert('An error occurred while saving the member. Please try again.');
-    }
-
+    dispatch(saveMember({ ingameName, zaloName, currentId }));
     setShowModal(false);
   };
 
@@ -115,16 +56,8 @@ const Dashboard = () => {
     setShowModal(true);
   };
 
-  const handleDelete = async (id) => {
-    const memberRef = doc(db, 'members', id);
-    try {
-      await deleteDoc(memberRef);
-      dispatch(deleteMember(id)); 
-      console.log('Document successfully deleted!');
-    } catch (error) {
-      console.error('Error deleting member:', error);
-      alert('An error occurred while deleting the member. Please try again.');
-    }
+  const handleDelete = (id) => {
+    dispatch(deleteMember(id));
   };
 
   const handleSearch = (event) => {
@@ -135,8 +68,17 @@ const Dashboard = () => {
     i18n.changeLanguage(event.target.value);
   };
 
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+
   return (
     <div className="dashboard-container">
+      {showAlert && (
+        <Alert
+          message={alertMessage}
+          onClose={() => setShowAlert(false)}
+        />
+      )}
       <div className="language-toggle">
         <label htmlFor="language-select" className="language-toggle-label">
           <select
@@ -174,8 +116,8 @@ const Dashboard = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredMembers.map((member, index) => (
-              <tr key={index}>
+            {filteredMembers.map((member) => (
+              <tr key={member.id}>
                 <td>{member.ingameName}</td>
                 <td>{member.zaloName}</td>
                 <td className={`role ${member.role === 'Tông Chủ' ? 'red' : member.role === 'Phó Tông Chủ' ? 'teal' : member.role === 'Trưởng Lão' ? 'lightblue' : member.role === 'Chủ Sự' ? 'leafgreen' : 'black'}`}>

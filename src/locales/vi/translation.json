@@ -18,6 +18,10 @@
         "Trưởng Lão": "Trưởng Lão",
         "Chủ Sự": "Chủ Sự",
         "Thành Viên": "Thành Viên"
-      }
+      },
+    "fillAllFields": "Vui lòng điền vào tất cả các ô trống",
+  "memberUpdated": "Cập nhật thành viên thành công!",
+  "memberAdded": "Thêm thành viên thành công!",
+  "errorSavingMember": "Đã xảy ra lỗi khi lưu thành viên. Vui lòng thử lại."
   }
   
